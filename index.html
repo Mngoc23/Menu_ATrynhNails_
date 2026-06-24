@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A. Trynh Beauty Salon - Price List</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at top left,
+    #ffbfdc,
+    #ff96ca,
+    #ff69b4,
+    #ff4fa8);
+
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+}
+
+/* =========================
+   BUTTERFLY
+========================= */
+
+.butterfly{
+    position:absolute;
+    width:44px;
+    height:28px;
+    filter:drop-shadow(0 0 15px rgba(255,255,255,.9));
+    animation:fly linear infinite;
+}
+
+.b1{
+    top:15%;
+    left:-10%;
+    animation-duration:16s;
+}
+
+.b2{
+    top:42%;
+    left:-10%;
+    animation-duration:22s;
+    animation-delay:3s;
+}
+
+.b3{
+    top:72%;
+    left:-10%;
+    animation-duration:18s;
+    animation-delay:5s;
+}
+
+.wing{
+    position:absolute;
+    width:22px;
+    height:28px;
+
+    background:white;
+
+    border-radius:
+    80% 20% 80% 20%;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.95),
+    0 0 20px rgba(255,255,255,.7);
+}
+
+.left{
+    left:0;
+    transform-origin:right center;
+    animation:flapL .22s infinite alternate ease-in-out;
+}
+
+.right{
+    right:0;
+    transform-origin:left center;
+    animation:flapR .22s infinite alternate ease-in-out;
+}
+
+@keyframes flapL{
+    from{
+        transform:rotateY(0deg);
+    }
+    to{
+        transform:rotateY(70deg);
+    }
+}
+
+@keyframes flapR{
+    from{
+        transform:rotateY(0deg);
+    }
+    to{
+        transform:rotateY(-70deg);
+    }
+}
+
+@keyframes fly{
+
+    from{
+        transform:translateX(0) translateY(0);
+    }
+
+    25%{
+        transform:translateX(35vw) translateY(-60px);
+    }
+
+    50%{
+        transform:translateX(65vw) translateY(35px);
+    }
+
+    100%{
+        transform:translateX(120vw) translateY(-20px);
+    }
+}
+
+/* =========================
+   SPARKLE
+========================= */
+
+.star{
+    position:absolute;
+    color:white;
+    font-size:16px;
+
+    text-shadow:
+    0 0 10px white,
+    0 0 20px white;
+
+    animation:spark 3s infinite ease-in-out;
+}
+
+@keyframes spark{
+
+    50%{
+        opacity:.25;
+        transform:
+        scale(.55)
+        rotate(90deg);
+    }
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+    width:850px;
+    max-width:95%;
+
+    padding:40px;
+
+    border-radius:35px;
+
+    backdrop-filter:blur(18px);
+
+    background:
+    rgba(255,255,255,.18);
+
+    border:
+    1px solid rgba(255,255,255,.45);
+
+    box-shadow:
+    0 25px 70px rgba(255,20,147,.35),
+    inset 0 0 25px rgba(255,255,255,.4);
+
+    position:relative;
+}
+
+.logo{
+    text-align:center;
+}
+
+.logo h1{
+
+    font-family:'Playfair Display',serif;
+
+    font-size:58px;
+
+    color:white;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,.95),
+    0 0 25px rgba(255,105,180,.8),
+    2px 2px 8px rgba(0,0,0,.25);
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:white;
+
+    letter-spacing:4px;
+
+    font-size:14px;
+
+    margin-top:6px;
+    margin-bottom:28px;
+
+    text-shadow:
+    1px 1px 4px rgba(0,0,0,.35);
+}
+
+.title{
+
+    text-align:center;
+
+    color:white;
+
+    font-size:26px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    1px 1px 4px rgba(0,0,0,.35);
+}
+
+.price-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:white;
+
+    padding:8px 0;
+
+    border-bottom:
+    1px dashed rgba(255,255,255,.35);
+
+    text-shadow:
+    1px 1px 4px rgba(0,0,0,.35);
+}
+
+.service{
+    font-weight:500;
+}
+
+.price{
+    font-weight:600;
+}
+
+.footer{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    color:white;
+
+    line-height:1.9;
+
+    text-shadow:
+    1px 1px 4px rgba(0,0,0,.35);
+}
+
+.footer-info{
+    margin-top:10px;
+    font-size:15px;
+    font-weight:500;
+}
+
+/* =========================
+   BOOK BUTTON
+========================= */
+
+.book-btn{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    text-decoration:none;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.18);
+
+    backdrop-filter:blur(14px);
+
+    border:
+    1px solid rgba(255,255,255,.4);
+
+    padding:
+    14px 18px;
+
+    border-radius:50px;
+
+    box-shadow:
+    0 0 20px rgba(255,255,255,.25);
+
+    transition:.3s;
+}
+
+.book-btn:hover{
+
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 0 30px rgba(255,255,255,.55);
+}
+
+.book-icon{
+    font-size:22px;
+}
+
+.book-text{
+    font-weight:600;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .card{
+        padding:25px;
+    }
+
+    .logo h1{
+        font-size:42px;
+    }
+
+    .item{
+        font-size:14px;
+    }
+
+    .book-btn{
+        right:15px;
+        bottom:15px;
+        padding:12px 15px;
+    }
+
+    .book-text{
+        font-size:14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BUTTERFLIES -->
+
+<div class="butterfly b1">
+    <div class="wing left"></div>
+    <div class="wing right"></div>
+</div>
+
+<div class="butterfly b2">
+    <div class="wing left"></div>
+    <div class="wing right"></div>
+</div>
+
+<div class="butterfly b3">
+    <div class="wing left"></div>
+    <div class="wing right"></div>
+</div>
+
+<!-- SPARKLES -->
+
+<div class="star" style="top:8%;left:12%;">✦</div>
+<div class="star" style="top:20%;left:84%;">✦</div>
+<div class="star" style="top:72%;left:10%;">✦</div>
+<div class="star" style="top:82%;left:88%;">✦</div>
+<div class="star" style="top:35%;left:5%;">✦</div>
+<div class="star" style="top:12%;left:65%;">✦</div>
+
+<!-- CARD -->
+
+<div class="card">
+
+    <div class="logo">
+        <h1>A. Trynh</h1>
+    </div>
+
+    <div class="subtitle">
+        ✦ NAIL STUDIO ✦
+    </div>
+
+    <div class="title">
+        PRICE LIST
+    </div>
+
+    <div class="price-list">
+
+        <div class="item">
+            <span class="service">Cứng móng / Tạo cầu</span>
+            <span class="price">20 - 60k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Úp móng base</span>
+            <span class="price">130 - 150k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Sơn gel</span>
+            <span class="price">80 - 100k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Sơn thạch</span>
+            <span class="price">90 - 120k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Mắt mèo</span>
+            <span class="price">130 - 160k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Đắp gel màu</span>
+            <span class="price">120 - 150k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Ombre</span>
+            <span class="price">50 - 70k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">French nhũ / màu</span>
+            <span class="price">50 - 80k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Đá mini / khối / viên</span>
+            <span class="price">4 - 30k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Charm nhỏ / lớn</span>
+            <span class="price">5 - 25k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Stick</span>
+            <span class="price">3 - 15k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Cắt da</span>
+            <span class="price">30 - 50k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Phá gel</span>
+            <span class="price">20 - 50k</span>
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+        ✦ Y2K BUTTERFLY AESTHETIC ✦
+
+        <div class="footer-info">
+            📍 38 Lê Phụng Hiểu, P. An Hải
+            <br>
+            📞 0935.910.610
+        </div>
+
+    </div>
+
+</div>
+
+<a
+class="book-btn"
+href="https://www.facebook.com/p/A-Trynh-Beauty-Salon-61559892823129/"
+target="_blank">
+
+    <span class="book-icon">💬</span>
+    <span class="book-text">Đặt lịch</span>
+
+</a>
+
+</body>
+</html>
