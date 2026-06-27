@@ -1,503 +1,1049 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>A. Trynh Beauty Salon - Price List</title>
+<title>A. Trynh | Nails & Massage</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 
-    background:
-    radial-gradient(circle at top left,
-    #ffbfdc,
-    #ff96ca,
-    #ff69b4,
-    #ff4fa8);
+font-family:'Poppins',sans-serif;
 
-    overflow:hidden;
-    font-family:'Poppins',sans-serif;
+background:#111;
+
+overflow-x:hidden;
+
+color:#fff;
+
+position:relative;
+
+min-height:100vh;
+
 }
 
-/* =========================
-   BUTTERFLY
-========================= */
+/*=============================
+BACKGROUND
+=============================*/
 
-.butterfly{
-    position:absolute;
-    width:44px;
-    height:28px;
-    filter:drop-shadow(0 0 15px rgba(255,255,255,.9));
-    animation:fly linear infinite;
+.background{
+
+position:fixed;
+
+inset:0;
+
+background:url("Background_menu.png") center center/cover no-repeat;
+
+z-index:-30;
+
+animation:bgZoom 30s ease-in-out infinite alternate;
+
 }
 
-.b1{
-    top:15%;
-    left:-10%;
-    animation-duration:16s;
+.background::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(0,0,0,.15),
+rgba(0,0,0,.35)
+);
+
+backdrop-filter:blur(2px);
+
 }
 
-.b2{
-    top:42%;
-    left:-10%;
-    animation-duration:22s;
-    animation-delay:3s;
+/*=============================
+LIGHT
+=============================*/
+
+.light{
+
+position:fixed;
+
+width:700px;
+
+height:700px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(255,255,255,.18),
+transparent 70%);
+
+filter:blur(40px);
+
+pointer-events:none;
+
+animation:lightMove 18s infinite alternate ease-in-out;
+
+z-index:-20;
+
 }
 
-.b3{
-    top:72%;
-    left:-10%;
-    animation-duration:18s;
-    animation-delay:5s;
+@keyframes lightMove{
+
+0%{
+transform:translate(-150px,-120px);
 }
 
-.wing{
-    position:absolute;
-    width:22px;
-    height:28px;
-
-    background:white;
-
-    border-radius:
-    80% 20% 80% 20%;
-
-    box-shadow:
-    0 0 10px rgba(255,255,255,.95),
-    0 0 20px rgba(255,255,255,.7);
+100%{
+transform:translate(250px,150px);
 }
 
-.left{
-    left:0;
-    transform-origin:right center;
-    animation:flapL .22s infinite alternate ease-in-out;
 }
 
-.right{
-    right:0;
-    transform-origin:left center;
-    animation:flapR .22s infinite alternate ease-in-out;
+/*=============================
+FLOWER
+=============================*/
+
+.flower{
+
+position:fixed;
+
+top:-20px;
+
+left:-20px;
+
+width:430px;
+
+pointer-events:none;
+
+animation:
+
+flowerFloat 8s ease-in-out infinite,
+
+flowerGlow 4s infinite;
+
+z-index:10;
+
+filter:
+
+drop-shadow(0 0 20px rgba(255,255,255,.5));
+
 }
 
-@keyframes flapL{
-    from{
-        transform:rotateY(0deg);
-    }
-    to{
-        transform:rotateY(70deg);
-    }
+@keyframes flowerFloat{
+
+50%{
+
+transform:
+translateY(15px)
+rotate(3deg);
+
 }
 
-@keyframes flapR{
-    from{
-        transform:rotateY(0deg);
-    }
-    to{
-        transform:rotateY(-70deg);
-    }
 }
 
-@keyframes fly{
+@keyframes flowerGlow{
 
-    from{
-        transform:translateX(0) translateY(0);
-    }
+50%{
 
-    25%{
-        transform:translateX(35vw) translateY(-60px);
-    }
+filter:
 
-    50%{
-        transform:translateX(65vw) translateY(35px);
-    }
+drop-shadow(0 0 45px rgba(255,255,255,.95));
 
-    100%{
-        transform:translateX(120vw) translateY(-20px);
-    }
 }
 
-/* =========================
-   SPARKLE
-========================= */
-
-.star{
-    position:absolute;
-    color:white;
-    font-size:16px;
-
-    text-shadow:
-    0 0 10px white,
-    0 0 20px white;
-
-    animation:spark 3s infinite ease-in-out;
 }
 
-@keyframes spark{
+/*=============================
+DOLL
+=============================*/
 
-    50%{
-        opacity:.25;
-        transform:
-        scale(.55)
-        rotate(90deg);
-    }
+.doll{
+
+position:fixed;
+
+right:0;
+
+bottom:0;
+
+width:420px;
+
+pointer-events:none;
+
+animation:
+
+dollFloat 7s ease-in-out infinite;
+
+z-index:8;
+
+filter:
+
+drop-shadow(0 0 30px rgba(255,255,255,.25));
+
 }
 
-/* =========================
-   CARD
-========================= */
+@keyframes dollFloat{
 
-.card{
+50%{
 
-    width:850px;
-    max-width:95%;
+transform:
+translateY(-18px);
 
-    padding:40px;
+}
 
-    border-radius:35px;
+}
 
-    backdrop-filter:blur(18px);
+/*=============================
+SPARKLES
+=============================*/
 
-    background:
-    rgba(255,255,255,.18);
+.sparkles{
 
-    border:
-    1px solid rgba(255,255,255,.45);
+position:fixed;
 
-    box-shadow:
-    0 25px 70px rgba(255,20,147,.35),
-    inset 0 0 25px rgba(255,255,255,.4);
+inset:0;
 
-    position:relative;
+overflow:hidden;
+
+pointer-events:none;
+
+z-index:5;
+
+}
+
+.spark{
+
+position:absolute;
+
+color:white;
+
+font-size:18px;
+
+opacity:.8;
+
+animation:
+
+twinkle 4s infinite ease-in-out;
+
+}
+
+.spark:nth-child(1){top:8%;left:12%;}
+.spark:nth-child(2){top:15%;left:82%;}
+.spark:nth-child(3){top:35%;left:6%;}
+.spark:nth-child(4){top:68%;left:88%;}
+.spark:nth-child(5){top:82%;left:18%;}
+.spark:nth-child(6){top:60%;left:70%;}
+.spark:nth-child(7){top:28%;left:55%;}
+.spark:nth-child(8){top:92%;left:60%;}
+
+@keyframes twinkle{
+
+0%,100%{
+
+opacity:.2;
+
+transform:scale(.5);
+
+}
+
+50%{
+
+opacity:1;
+
+transform:scale(1.5)
+rotate(90deg);
+
+}
+
+}
+
+/*=============================
+MAIN
+=============================*/
+
+.container{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+padding:
+
+60px 0 80px;
+
+position:relative;
+
+z-index:20;
+
+}
+
+/*=============================
+HEADER
+=============================*/
+
+.header{
+
+text-align:center;
+
+animation:
+
+fadeDown 1.2s;
+
+}
+
+.small-title{
+
+font-family:
+
+'Cormorant Garamond',serif;
+
+letter-spacing:8px;
+
+font-size:18px;
+
+margin-bottom:8px;
+
+text-transform:uppercase;
+
+color:#efefef;
+
 }
 
 .logo{
-    text-align:center;
+
+font-family:
+
+'Great Vibes',cursive;
+
+font-size:90px;
+
+font-weight:400;
+
+line-height:1;
+
+position:relative;
+
+display:inline-block;
+
 }
 
-.logo h1{
+.logo::after{
 
-    font-family:'Playfair Display',serif;
+content:"";
 
-    font-size:58px;
+position:absolute;
 
-    color:white;
+left:-15%;
 
-    text-shadow:
-    0 0 10px rgba(255,255,255,.95),
-    0 0 25px rgba(255,105,180,.8),
-    2px 2px 8px rgba(0,0,0,.25);
+top:0;
+
+width:35%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.95),
+transparent);
+
+transform:skewX(-25deg);
+
+animation:shine 4s infinite;
+
 }
 
-.subtitle{
+.price-title{
 
-    text-align:center;
+margin-top:18px;
 
-    color:white;
+font-family:
 
-    letter-spacing:4px;
+'Cormorant Garamond',serif;
 
-    font-size:14px;
+font-size:34px;
 
-    margin-top:6px;
-    margin-bottom:28px;
+letter-spacing:6px;
 
-    text-shadow:
-    1px 1px 4px rgba(0,0,0,.35);
+font-weight:700;
+
 }
 
-.title{
+@keyframes shine{
 
-    text-align:center;
+0%{
 
-    color:white;
+left:-40%;
 
-    font-size:26px;
-
-    font-weight:600;
-
-    margin-bottom:25px;
-
-    text-shadow:
-    1px 1px 4px rgba(0,0,0,.35);
 }
 
-.price-list{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+100%{
+
+left:140%;
+
 }
+
+}
+
+@keyframes fadeDown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+/*=============================
+GLASS CARD
+=============================*/
+
+.menu-card{
+
+margin-top:55px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.18);
+
+border-radius:35px;
+
+padding:45px;
+
+box-shadow:
+
+0 20px 60px rgba(0,0,0,.35),
+
+0 0 40px rgba(255,255,255,.08) inset;
+
+animation:fadeUp 1.2s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.menu-card::before{
+
+content:"";
+
+position:absolute;
+
+top:-250px;
+
+left:-250px;
+
+width:450px;
+
+height:450px;
+
+background:radial-gradient(circle,
+rgba(255,255,255,.12),
+transparent 70%);
+
+animation:rotateLight 20s linear infinite;
+
+}
+
+@keyframes rotateLight{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+.menu-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:45px;
+
+margin-top:15px;
+
+position:relative;
+
+z-index:2;
+
+}
+
+.column{
+
+display:flex;
+
+flex-direction:column;
+
+gap:35px;
+
+}
+
+.category{
+
+animation:fadeUp 1.2s;
+
+}
+
+.category h2{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:30px;
+
+margin-bottom:18px;
+
+letter-spacing:3px;
+
+text-transform:uppercase;
+
+border-bottom:1px solid rgba(255,255,255,.25);
+
+padding-bottom:12px;
+
+position:relative;
+
+}
+
+.category h2::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-1px;
+
+width:80px;
+
+height:2px;
+
+background:white;
+
+box-shadow:
+
+0 0 12px white;
+
+}
+
+/*=============================
+ITEM
+=============================*/
 
 .item{
 
-    display:flex;
+display:flex;
 
-    justify-content:space-between;
+justify-content:space-between;
 
-    align-items:center;
+align-items:center;
 
-    color:white;
+gap:20px;
 
-    padding:8px 0;
+padding:12px 0;
 
-    border-bottom:
-    1px dashed rgba(255,255,255,.35);
+border-bottom:1px dashed rgba(255,255,255,.15);
 
-    text-shadow:
-    1px 1px 4px rgba(0,0,0,.35);
+transition:.35s;
+
+cursor:default;
+
+}
+
+.item:hover{
+
+padding-left:10px;
+
+transform:translateX(8px);
+
 }
 
 .service{
-    font-weight:500;
+
+font-size:15px;
+
+font-weight:500;
+
+letter-spacing:.4px;
+
 }
 
 .price{
-    font-weight:600;
+
+font-weight:600;
+
+font-size:15px;
+
+white-space:nowrap;
+
 }
+
+.note{
+
+margin-top:-10px;
+
+margin-bottom:15px;
+
+opacity:.75;
+
+font-size:13px;
+
+font-style:italic;
+
+}
+
+/*=============================
+FOOT TABLE
+=============================*/
+
+.foot-table{
+
+display:grid;
+
+grid-template-columns:2fr repeat(3,1fr);
+
+margin-top:10px;
+
+border-radius:18px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.15);
+
+}
+
+.foot-table div{
+
+padding:12px;
+
+text-align:center;
+
+border:1px solid rgba(255,255,255,.08);
+
+font-size:14px;
+
+}
+
+.foot-head{
+
+background:rgba(255,255,255,.12);
+
+font-weight:600;
+
+}
+
+/*=============================
+FOOTER
+=============================*/
 
 .footer{
 
-    margin-top:28px;
+margin-top:45px;
 
-    text-align:center;
+text-align:center;
 
-    color:white;
+line-height:2;
 
-    line-height:1.9;
+font-size:15px;
 
-    text-shadow:
-    1px 1px 4px rgba(0,0,0,.35);
 }
 
-.footer-info{
-    margin-top:10px;
-    font-size:15px;
-    font-weight:500;
+.footer h3{
+
+font-family:'Cormorant Garamond',serif;
+
+letter-spacing:4px;
+
+font-size:22px;
+
+margin-bottom:12px;
+
 }
 
-/* =========================
-   BOOK BUTTON
-========================= */
+/*=============================
+BOOK BUTTON
+=============================*/
 
 .book-btn{
 
-    position:fixed;
+position:fixed;
 
-    right:25px;
-    bottom:25px;
+right:30px;
 
-    text-decoration:none;
+bottom:30px;
 
-    display:flex;
-    align-items:center;
-    gap:10px;
+padding:14px 22px;
 
-    color:white;
+border-radius:60px;
 
-    background:
-    rgba(255,255,255,.18);
+background:rgba(255,255,255,.12);
 
-    backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.25);
 
-    border:
-    1px solid rgba(255,255,255,.4);
+backdrop-filter:blur(16px);
 
-    padding:
-    14px 18px;
+color:white;
 
-    border-radius:50px;
+text-decoration:none;
 
-    box-shadow:
-    0 0 20px rgba(255,255,255,.25);
+display:flex;
 
-    transition:.3s;
+align-items:center;
+
+gap:10px;
+
+font-weight:600;
+
+transition:.35s;
+
+z-index:999;
+
+box-shadow:
+
+0 0 20px rgba(255,255,255,.15);
+
 }
 
 .book-btn:hover{
 
-    transform:
-    translateY(-3px);
+transform:translateY(-5px);
 
-    box-shadow:
-    0 0 30px rgba(255,255,255,.55);
+box-shadow:
+
+0 0 35px rgba(255,255,255,.45);
+
 }
 
-.book-icon{
-    font-size:22px;
+/*=============================
+ANIMATION
+=============================*/
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(50px);
+
 }
 
-.book-text{
-    font-weight:600;
+to{
+
+opacity:1;
+
+transform:none;
+
 }
 
-/* =========================
-   MOBILE
-========================= */
+}
 
-@media(max-width:768px){
+@keyframes bgZoom{
 
-    .card{
-        padding:25px;
-    }
+from{
 
-    .logo h1{
-        font-size:42px;
-    }
+transform:scale(1);
 
-    .item{
-        font-size:14px;
-    }
+}
 
-    .book-btn{
-        right:15px;
-        bottom:15px;
-        padding:12px 15px;
-    }
+to{
 
-    .book-text{
-        font-size:14px;
-    }
+transform:scale(1.08);
+
+}
+
+}
+
+/*=============================
+RESPONSIVE
+=============================*/
+
+@media(max-width:900px){
+
+.logo{
+
+font-size:68px;
+
+}
+
+.menu-card{
+
+padding:28px;
+
+}
+
+.menu-grid{
+
+grid-template-columns:1fr;
+
+gap:25px;
+
+}
+
+.flower{
+
+width:250px;
+
+}
+
+.doll{
+
+width:250px;
+
+}
+
+.book-btn{
+
+right:15px;
+
+bottom:15px;
+
+padding:12px 18px;
+
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- BUTTERFLIES -->
+<div class="background"></div>
 
-<div class="butterfly b1">
-    <div class="wing left"></div>
-    <div class="wing right"></div>
+<div class="light"></div>
+
+<img src="Hoa_menu.png" class="flower">
+
+<img src="Bupbetinhduc_menu.png" class="doll">
+
+<div class="sparkles">
+
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+<span class="spark">✦</span>
+
 </div>
 
-<div class="butterfly b2">
-    <div class="wing left"></div>
-    <div class="wing right"></div>
+<div class="container">
+
+<div class="header">
+
+<div class="small-title">
+NAILS • MASSAGE
 </div>
 
-<div class="butterfly b3">
-    <div class="wing left"></div>
-    <div class="wing right"></div>
+<div class="logo">
+A. Trynh
 </div>
 
-<!-- SPARKLES -->
+<div class="price-title">
+PRICE LIST
+</div>
 
-<div class="star" style="top:8%;left:12%;">✦</div>
-<div class="star" style="top:20%;left:84%;">✦</div>
-<div class="star" style="top:72%;left:10%;">✦</div>
-<div class="star" style="top:82%;left:88%;">✦</div>
-<div class="star" style="top:35%;left:5%;">✦</div>
-<div class="star" style="top:12%;left:65%;">✦</div>
+</div>
 
-<!-- CARD -->
+<div class="menu-card">
 
-<div class="card">
+<div class="menu-grid">
 
-    <div class="logo">
-        <h1>A. Trynh</h1>
-    </div>
+<!-- LEFT COLUMN -->
 
-    <div class="subtitle">
-        ✦ NAIL STUDIO ✦
-    </div>
+<div class="column">
 
-    <div class="title">
-        PRICE LIST
-    </div>
+    <div class="category">
 
-    <div class="price-list">
+        <h2>Basic Nails</h2>
 
         <div class="item">
-            <span class="service">Cứng móng / Tạo cầu</span>
-            <span class="price">20 - 60k</span>
+            <span class="service">Cuticle Care</span>
+            <span class="price">50k</span>
         </div>
 
         <div class="item">
-            <span class="service">Úp móng base</span>
-            <span class="price">130 - 150k</span>
+            <span class="service">Gel Removal</span>
+            <span class="price">50k</span>
         </div>
 
         <div class="item">
-            <span class="service">Sơn gel</span>
-            <span class="price">80 - 100k</span>
+            <span class="service">Gel Polish</span>
+            <span class="price">120k</span>
         </div>
 
         <div class="item">
-            <span class="service">Sơn thạch</span>
-            <span class="price">90 - 120k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Mắt mèo</span>
-            <span class="price">130 - 160k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Đắp gel màu</span>
-            <span class="price">120 - 150k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Ombre</span>
-            <span class="price">50 - 70k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">French nhũ / màu</span>
-            <span class="price">50 - 80k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Đá mini / khối / viên</span>
-            <span class="price">4 - 30k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Charm nhỏ / lớn</span>
-            <span class="price">5 - 25k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Stick</span>
-            <span class="price">3 - 15k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Cắt da</span>
-            <span class="price">30 - 50k</span>
-        </div>
-
-        <div class="item">
-            <span class="service">Phá gel</span>
-            <span class="price">20 - 50k</span>
+            <span class="service">Cat Eye Gel</span>
+            <span class="price">200k</span>
         </div>
 
     </div>
 
-    <div class="footer">
+    <div class="category">
 
-        ✦ Y2K BUTTERFLY AESTHETIC ✦
+        <h2>Nail Design</h2>
 
-        <div class="footer-info">
-            📍 38 Lê Phụng Hiểu, P. An Hải
-            <br>
-            📞 0935.910.610
+        <div class="item">
+            <span class="service">French Tips</span>
+            <span class="price">100k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Chrome Effect</span>
+            <span class="price">80k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Marble Design</span>
+            <span class="price">30–60k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">3D Art</span>
+            <span class="price">40–80k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Character Art</span>
+            <span class="price">40–80k</span>
         </div>
 
     </div>
+
+</div>
+
+<!-- RIGHT COLUMN -->
+
+<div class="column">
+
+    <div class="category">
+
+        <h2>Full Set</h2>
+
+        <div class="note">
+            *Design service is not included
+        </div>
+
+        <div class="item">
+            <span class="service">Gel X</span>
+            <span class="price">350k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Builder Gel</span>
+            <span class="price">300k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Extra Nail Tips</span>
+            <span class="price">+100k</span>
+        </div>
+
+        <div class="item">
+            <span class="service">Dual Form</span>
+            <span class="price">350k</span>
+        </div>
+
+    </div>
+
+    <div class="category">
+
+        <h2>Foot Care</h2>
+
+        <div class="foot-table">
+
+            <div class="foot-head">Treatment</div>
+            <div class="foot-head">30 min</div>
+            <div class="foot-head">60 min</div>
+            <div class="foot-head">90 min</div>
+
+            <div>Basic</div>
+            <div>150k</div>
+            <div>250k</div>
+            <div>—</div>
+
+            <div>Aurora</div>
+            <div>200k</div>
+            <div>350k</div>
+            <div>—</div>
+
+            <div>Oil Therapy</div>
+            <div>150k</div>
+            <div>300k</div>
+            <div>—</div>
+
+            <div>Thai Massage</div>
+            <div>—</div>
+            <div>350k</div>
+            <div>500k</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+
+    <h3>Beauty Begins at Your Fingertips</h3>
+
+    <p>📍 38 Le Phung Hieu Street, An Hai Ward</p>
+
+    <p>📞 0935 910 610</p>
+
+</div>
 
 </div>
 
@@ -506,10 +1052,169 @@ class="book-btn"
 href="https://www.facebook.com/p/A-Trynh-Beauty-Salon-61559892823129/"
 target="_blank">
 
-    <span class="book-icon">💬</span>
-    <span class="book-text">Đặt lịch</span>
+<span style="font-size:22px;">💬</span>
+
+<span>Book Now</span>
 
 </a>
+
+<script>
+
+/* ============================
+   PARALLAX
+============================ */
+
+const flower=document.querySelector(".flower");
+const doll=document.querySelector(".doll");
+
+document.addEventListener("mousemove",(e)=>{
+
+const x=(e.clientX/window.innerWidth-.5)*18;
+const y=(e.clientY/window.innerHeight-.5)*18;
+
+flower.style.transform=
+`translate(${x}px,${y}px)`;
+
+doll.style.transform=
+`translate(${-x}px,${-y}px)`;
+
+});
+
+/* ============================
+   FLOAT ITEMS
+============================ */
+
+document.querySelectorAll(".category").forEach((box,index)=>{
+
+box.animate(
+
+[
+{
+transform:"translateY(25px)",
+opacity:0
+},
+{
+transform:"translateY(0)",
+opacity:1
+}
+],
+
+{
+duration:900,
+delay:index*220,
+fill:"forwards",
+easing:"ease-out"
+}
+
+);
+
+});
+
+/* ============================
+   RANDOM SPARKLES
+============================ */
+
+const sparkleContainer=document.querySelector(".sparkles");
+
+setInterval(()=>{
+
+const star=document.createElement("span");
+
+star.innerHTML="✦";
+
+star.className="spark";
+
+star.style.left=Math.random()*100+"%";
+
+star.style.top=Math.random()*100+"%";
+
+star.style.fontSize=(12+Math.random()*14)+"px";
+
+sparkleContainer.appendChild(star);
+
+setTimeout(()=>{
+
+star.remove();
+
+},3500);
+
+},600);
+
+/* ============================
+   CARD GLOW
+============================ */
+
+const card=document.querySelector(".menu-card");
+
+document.addEventListener("mousemove",(e)=>{
+
+const x=e.clientX/window.innerWidth*100;
+
+const y=e.clientY/window.innerHeight*100;
+
+card.style.background=
+
+`radial-gradient(circle at ${x}% ${y}%,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08) 45%,
+rgba(255,255,255,.06) 100%)`;
+
+});
+
+/* ============================
+   HOVER GLOW
+============================ */
+
+document.querySelectorAll(".item").forEach(item=>{
+
+item.addEventListener("mouseenter",()=>{
+
+item.style.textShadow=
+"0 0 12px rgba(255,255,255,.85)";
+
+});
+
+item.addEventListener("mouseleave",()=>{
+
+item.style.textShadow="none";
+
+});
+
+});
+
+/* ============================
+   BUTTON PULSE
+============================ */
+
+const btn=document.querySelector(".book-btn");
+
+setInterval(()=>{
+
+btn.animate([
+
+{
+transform:"scale(1)"
+},
+
+{
+transform:"scale(1.06)"
+},
+
+{
+transform:"scale(1)"
+}
+
+],
+
+{
+
+duration:1200
+
+});
+
+},2200);
+
+</script>
 
 </body>
 </html>
